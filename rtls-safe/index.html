@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTLS·Safe — Антиколлизия погрузчиков и AGV. UWB 10 см.</title>
+<meta name="description" content="UWB-система предотвращения столкновений погрузчиков, AGV и рабочих. DW3000, точность 10–20 см, частота 100 Гц, CAN-интеграция.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --red: #b91c1c; --dark: #0f172a; --slate: #1e293b; --muted: #64748b; --border: #e2e8f0; --bg: #f8fafc; --white: #fff; --radius: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--slate); background: var(--bg); line-height: 1.6; }
+  nav { background: var(--dark); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; }
+  .nav-logo span { color: #60a5fa; }
+  .nav-back { color: #94a3b8; font-size: .85rem; transition: color .2s; }
+  .nav-back:hover { color: #fff; }
+
+  .hero { background: linear-gradient(135deg, #450a0a 0%, #1c0a0a 100%); color: #fff; padding: 72px 5% 88px; }
+  .hero-inner { max-width: 760px; }
+  .hero-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #fca5a5; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.12; margin-bottom: 20px; }
+  .hero h1 span { color: #fca5a5; }
+  .hero p { color: #fecaca; font-size: 1rem; max-width: 560px; margin-bottom: 32px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat { text-align: left; }
+  .stat .val { font-size: 1.8rem; font-weight: 900; color: #fca5a5; display: block; }
+  .stat .lbl { font-size: .78rem; color: #fecaca; margin-top: 2px; }
+
+  .section { padding: 64px 5%; }
+  .section.alt { background: var(--white); }
+  .section h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; margin-bottom: 12px; }
+  .section .sub { color: var(--muted); margin-bottom: 40px; }
+
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .how-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .how-card .num { font-size: 2rem; font-weight: 900; color: var(--red); margin-bottom: 10px; }
+  .how-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .how-card p { font-size: .87rem; color: var(--muted); }
+
+  .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .spec { background: var(--white); padding: 20px; text-align: center; }
+  .spec .v { font-size: 1.4rem; font-weight: 800; color: var(--red); display: block; }
+  .spec .l { font-size: .75rem; color: var(--muted); margin-top: 4px; }
+
+  .zones { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 24px; }
+  .zone-card { border-radius: 12px; padding: 20px; }
+  .zone-card h3 { font-size: .95rem; font-weight: 800; margin-bottom: 6px; }
+  .zone-card p { font-size: .84rem; }
+  .z1 { background: #fef2f2; border-left: 4px solid #b91c1c; }
+  .z1 h3 { color: #b91c1c; }
+  .z2 { background: #fff7ed; border-left: 4px solid #c2410c; }
+  .z2 h3 { color: #c2410c; }
+  .z3 { background: #fffbeb; border-left: 4px solid #b45309; }
+  .z3 h3 { color: #b45309; }
+
+  .contact { padding: 64px 5%; background: linear-gradient(135deg, #450a0a 0%, #1c0a0a 100%); color: #fff; text-align: center; }
+  .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
+  .contact p { color: #fecaca; max-width: 480px; margin: 0 auto 32px; }
+  .btn { display: inline-block; background: var(--red); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 700; }
+  .back-link { display: inline-block; margin-top: 20px; color: #fca5a5; font-size: .9rem; }
+
+  footer { background: var(--dark); color: #64748b; text-align: center; padding: 20px 5%; font-size: .8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">DN·<span>RTLS</span></div>
+  <a href="../index.html" class="nav-back">← Все решения</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Промышленная безопасность · Антиколлизия · UWB DW3000</div>
+    <h1>Погрузчик тормозит за<br><span>0.3 секунды</span> до контакта с человеком</h1>
+    <p>UWB-система предотвращения столкновений для смешанных зон: погрузчики, AGV/AMR и рабочие в одном пространстве. Точность 10–20 см, обновление 100 Гц, интеграция через CAN-шину.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="val">10–20 см</span><span class="lbl">Точность определения расстояния</span></div>
+      <div class="stat"><span class="val">100 Гц</span><span class="lbl">Частота обновления</span></div>
+      <div class="stat"><span class="val">&lt;0.3 с</span><span class="lbl">Реакция до аварийного торможения</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Как это работает</h2>
+  <p class="sub">Четыре компонента системы, каждый выполняет одну задачу.</p>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="num">01</div>
+      <h3>Метка на каске рабочего</h3>
+      <p>DW3000 + акселерометр. Вес 35 г. Батарея 2 года при TWR 10 Гц. Стандартное крепление на каску типа MSA/3M без модификации.</p>
+    </div>
+    <div class="how-card">
+      <div class="num">02</div>
+      <h3>Анкеры на технике</h3>
+      <p>2 анкера на каждой единице техники (спереди и сзади). Питание от бортовой сети 12/24 В. TWR ranging — дистанция до каждой метки в зоне 100 раз/сек.</p>
+    </div>
+    <div class="how-card">
+      <div class="num">03</div>
+      <h3>Контроллер + CAN-шина</h3>
+      <p>При сближении &lt;2 м — звуковой и световой сигнал водителю. При &lt;0.5 м — управляющий сигнал на CAN-шину для принудительного торможения. Тормоза AGV или пневматика погрузчика.</p>
+    </div>
+    <div class="how-card">
+      <div class="num">04</div>
+      <h3>Dashboard диспетчера</h3>
+      <p>Тепловые карты инцидентов, топ-10 опасных зон, журнал событий с timestamp. Экспорт в 1С:ОТ, SAP EHS или любую SCADA по REST API.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Зоны реакции</h2>
+  <p class="sub">Три концентрические зоны с разной реакцией системы — настраиваются под каждую площадку.</p>
+  <div class="zones">
+    <div class="zone-card z1">
+      <h3>Красная зона · &lt;0.5 м</h3>
+      <p>Аварийное торможение через CAN. Событие записывается в журнал инцидентов. Алерт диспетчеру.</p>
+    </div>
+    <div class="zone-card z2">
+      <h3>Оранжевая зона · 0.5–2 м</h3>
+      <p>Звуковой сигнал водителю, вспышка LED-индикатора. Автоматическое снижение скорости AGV до 0.5 м/с.</p>
+    </div>
+    <div class="zone-card z3">
+      <h3>Жёлтая зона · 2–5 м</h3>
+      <p>Предупреждение на дисплей водителя. Запись в статистику близких прохождений без инцидента.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Технические характеристики</h2>
+  <p class="sub">Метка рабочего + анкерный модуль на технике.</p>
+  <div class="specs-grid">
+    <div class="spec"><span class="v">10–20 см</span><span class="l">Точность TWR в условиях склада</span></div>
+    <div class="spec"><span class="v">100 Гц</span><span class="l">Частота обновления расстояния</span></div>
+    <div class="spec"><span class="v">30 м</span><span class="l">Рабочая дальность анкера</span></div>
+    <div class="spec"><span class="v">2 года</span><span class="l">Срок службы батареи метки</span></div>
+    <div class="spec"><span class="v">35 г</span><span class="l">Вес метки на каске</span></div>
+    <div class="spec"><span class="v">IP54</span><span class="l">Защита корпуса метки</span></div>
+    <div class="spec"><span class="v">CAN 2.0B</span><span class="l">Интерфейс управления техникой</span></div>
+    <div class="spec"><span class="v">&lt;2 мс</span><span class="l">Задержка от измерения до сигнала</span></div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Рассчитаем анкерную сеть</h2>
+  <p>Пришлите план площадки и количество единиц техники — вернём схему расстановки анкеров и смету за один рабочий день.</p>
+  <a href="mailto:sayr@inbox.ru" class="btn">Написать нам</a>
+  <div><a href="../index.html" class="back-link">← Все решения DN·RTLS</a></div>
+</section>
+
+<footer>DN·RTLS · RTLS·Safe · sayr@inbox.ru</footer>
+</body>
+</html>

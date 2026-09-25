@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTLS·Dock — Автономный захват дока. UWB 10 см.</title>
+<meta name="description" content="UWB-система позиционирования автономного тягача у рампы с точностью 10 см. Без водителя, без оператора. Автоматический запуск ворот, рампы, конвейера.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --acc: #1e40af; --dark: #0f172a; --slate: #1e293b; --muted: #64748b; --border: #e2e8f0; --bg: #f8fafc; --white: #fff; --radius: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--slate); background: var(--bg); line-height: 1.6; }
+  nav { background: var(--dark); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; }
+  .nav-logo span { color: #60a5fa; }
+  .nav-back { color: #94a3b8; font-size: .85rem; }
+  .nav-back:hover { color: #fff; }
+
+  .hero { background: linear-gradient(135deg, #0c1a4a 0%, #060d2e 100%); color: #fff; padding: 72px 5% 88px; }
+  .hero-inner { max-width: 760px; }
+  .hero-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #93c5fd; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.12; margin-bottom: 20px; }
+  .hero h1 span { color: #93c5fd; }
+  .hero p { color: #bfdbfe; font-size: 1rem; max-width: 560px; margin-bottom: 32px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat .val { font-size: 1.8rem; font-weight: 900; color: #93c5fd; display: block; }
+  .stat .lbl { font-size: .78rem; color: #bfdbfe; margin-top: 2px; }
+
+  .section { padding: 64px 5%; }
+  .section.alt { background: var(--white); }
+  .section h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; margin-bottom: 12px; }
+  .section .sub { color: var(--muted); margin-bottom: 40px; }
+
+  .flow { display: flex; gap: 0; flex-direction: column; }
+  .flow-step { display: flex; gap: 20px; margin-bottom: 20px; }
+  .flow-step .step-num { flex: 0 0 48px; height: 48px; border-radius: 50%; background: var(--acc); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.1rem; flex-shrink: 0; }
+  .flow-step .step-body { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; flex: 1; }
+  .flow-step .step-body h3 { font-size: .95rem; font-weight: 700; margin-bottom: 4px; color: var(--acc); }
+  .flow-step .step-body p { font-size: .87rem; color: var(--muted); }
+
+  .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .spec { background: var(--white); padding: 20px; text-align: center; }
+  .spec .v { font-size: 1.4rem; font-weight: 800; color: var(--acc); display: block; }
+  .spec .l { font-size: .75rem; color: var(--muted); margin-top: 4px; }
+
+  .compat { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius); padding: 28px; margin-top: 32px; }
+  .compat h3 { font-weight: 800; color: var(--acc); margin-bottom: 12px; }
+  .compat p { font-size: .9rem; color: var(--muted); }
+
+  .contact { padding: 64px 5%; background: linear-gradient(135deg, #0c1a4a 0%, #060d2e 100%); color: #fff; text-align: center; }
+  .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
+  .contact p { color: #bfdbfe; max-width: 500px; margin: 0 auto 32px; }
+  .btn { display: inline-block; background: var(--acc); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 700; }
+  .back-link { display: inline-block; margin-top: 20px; color: #93c5fd; font-size: .9rem; }
+  footer { background: var(--dark); color: #64748b; text-align: center; padding: 20px 5%; font-size: .8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">DN·<span>RTLS</span></div>
+  <a href="../index.html" class="nav-back">← Все решения</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Автономная логистика · Безлюдный терминал · UWB DW3000</div>
+    <h1>Автономный тягач<br>заходит на рампу с точностью<br><span>10 сантиметров</span> — без водителя</h1>
+    <p>UWB-система наведения автономного тягача на докстанцию. 4 анкера у рампы, метка на тягаче. Точное позиционирование запускает ворота, рампу и конвейер автоматически.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="val">10 см</span><span class="lbl">Точность выравнивания по оси дока</span></div>
+      <div class="stat"><span class="val">0</span><span class="lbl">Операторов на терминале</span></div>
+      <div class="stat"><span class="val">&lt;30 с</span><span class="lbl">Время захода на рампу с нуля</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Цикл захвата дока — без участия человека</h2>
+  <p class="sub">От въезда на территорию терминала до открытия ворот — полностью автоматически.</p>
+  <div class="flow">
+    <div class="flow-step"><div class="step-num">1</div><div class="step-body"><h3>YMS назначает рампу</h3><p>Yard Management System знает, какая рампа свободна, и отправляет задание на автономный тягач через 4G/WiFi за секунды до прибытия.</p></div></div>
+    <div class="flow-step"><div class="step-num">2</div><div class="step-body"><h3>BLE обнаружение зоны дока</h3><p>На расстоянии 20–50 м от рампы тягач получает BLE-маяк (DN·Beacon) и переключается в режим точного захода.</p></div></div>
+    <div class="flow-step"><div class="step-num">3</div><div class="step-body"><h3>UWB наведение — последние 10 метров</h3><p>4 UWB-анкера у рампы дают тягачу координаты X, Y, угол отклонения от оси. Обновление 100 раз/сек. Тягач корректирует траекторию непрерывно.</p></div></div>
+    <div class="flow-step"><div class="step-num">4</div><div class="step-body"><h3>Автоматический запуск оборудования</h3><p>Позиция подтверждена — RTLS·Dock через реле запускает: открытие ворот, выдвижение доклевеллера, включение конвейера. Сигнал в WMS: «рампа 7 занята».</p></div></div>
+    <div class="flow-step"><div class="step-num">5</div><div class="step-body"><h3>Журнал события</h3><p>Время прибытия, точность стыковки, ID тягача — в YMS и ERP автоматически. Данные для SLA и биллинга без ручного ввода.</p></div></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Технические характеристики</h2>
+  <div class="specs-grid">
+    <div class="spec"><span class="v">10 см</span><span class="l">Точность по оси причала</span></div>
+    <div class="spec"><span class="v">4 анкера</span><span class="l">На один док (2D + угол)</span></div>
+    <div class="spec"><span class="v">100 Гц</span><span class="l">Частота обновления позиции</span></div>
+    <div class="spec"><span class="v">TWR</span><span class="l">Топология — нет синхронизации</span></div>
+    <div class="spec"><span class="v">REST API</span><span class="l">Интеграция с YMS / WMS</span></div>
+    <div class="spec"><span class="v">IP65</span><span class="l">Анкеры для уличного монтажа</span></div>
+  </div>
+  <div class="compat">
+    <h3>Совместимость с автономными платформами</h3>
+    <p>Evocargo EV-1 · Камаз Юпитер · Volvo VERA · любая платформа с открытым API управления. Данные позиции передаются по UDP JSON — подключение за один день. Совместим с DN·Yard для управления всем двором терминала.</p>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Готовим пилот за две недели</h2>
+  <p>Одна рампа, один автономный тягач, измеримый результат. Пришлите план терминала — рассчитаем схему анкеров и смету.</p>
+  <a href="mailto:sayr@inbox.ru" class="btn">Написать нам</a>
+  <div><a href="../index.html" class="back-link">← Все решения DN·RTLS</a></div>
+</section>
+
+<footer>DN·RTLS · RTLS·Dock · sayr@inbox.ru</footer>
+</body>
+</html>

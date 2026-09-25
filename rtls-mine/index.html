@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTLS·Mine — Трекинг персонала в шахте. UWB TWR.</title>
+<meta name="description" content="UWB-система позиционирования горняков в шахтах и тоннелях. TWR без синхронизации, Mesh вдоль штрека, выполняет ФНП РД-15-08, Man-down алерт.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --acc: #334155; --dark: #0f172a; --slate: #1e293b; --muted: #64748b; --border: #e2e8f0; --bg: #f8fafc; --white: #fff; --radius: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--slate); background: var(--bg); line-height: 1.6; }
+  nav { background: var(--dark); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; }
+  .nav-logo span { color: #60a5fa; }
+  .nav-back { color: #94a3b8; font-size: .85rem; }
+  .hero { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #fff; padding: 72px 5% 88px; }
+  .hero-inner { max-width: 760px; }
+  .hero-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #94a3b8; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.12; margin-bottom: 20px; }
+  .hero h1 span { color: #94a3b8; }
+  .hero p { color: #cbd5e1; font-size: 1rem; max-width: 560px; margin-bottom: 32px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat .val { font-size: 1.8rem; font-weight: 900; color: #e2e8f0; display: block; }
+  .stat .lbl { font-size: .78rem; color: #94a3b8; margin-top: 2px; }
+  .section { padding: 64px 5%; }
+  .section.alt { background: var(--white); }
+  .section h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; margin-bottom: 12px; }
+  .section .sub { color: var(--muted); margin-bottom: 40px; }
+  .feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .feat { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; border-left: 4px solid var(--acc); }
+  .feat h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--acc); }
+  .feat p { font-size: .87rem; color: var(--muted); }
+  .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .spec { background: var(--white); padding: 20px; text-align: center; }
+  .spec .v { font-size: 1.4rem; font-weight: 800; color: var(--acc); display: block; }
+  .spec .l { font-size: .75rem; color: var(--muted); margin-top: 4px; }
+  .regs { background: #f1f5f9; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; }
+  .regs h3 { font-weight: 800; margin-bottom: 12px; }
+  .reg-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .reg-tag { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px; font-size: .84rem; font-weight: 600; color: var(--slate); }
+  .contact { padding: 64px 5%; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #fff; text-align: center; }
+  .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
+  .contact p { color: #94a3b8; max-width: 480px; margin: 0 auto 32px; }
+  .btn { display: inline-block; background: var(--acc); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 700; }
+  .back-link { display: inline-block; margin-top: 20px; color: #94a3b8; font-size: .9rem; }
+  footer { background: var(--dark); color: #64748b; text-align: center; padding: 20px 5%; font-size: .8rem; }
+</style>
+</head>
+<body>
+<nav><div class="nav-logo">DN·<span>RTLS</span></div><a href="../index.html" class="nav-back">← Все решения</a></nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Горнодобыча · Тоннели · ГПСС · ФНП РД-15-08</div>
+    <h1>Диспетчер знает точное<br>местоположение каждого горняка —<br><span>даже на глубине 300 метров</span></h1>
+    <p>UWB-система позиционирования персонала в горных выработках. TWR-топология без кабельной синхронизации. Mesh вдоль штрека — самовосстанавливающаяся сеть. Man-down алерт за 30 секунд.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="val">30 см</span><span class="lbl">Точность в тоннеле (TWR)</span></div>
+      <div class="stat"><span class="val">1 день</span><span class="lbl">Развёртка анкеров вдоль штрека</span></div>
+      <div class="stat"><span class="val">ФНП</span><span class="lbl">РД-15-08 требования выполнены</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Ключевые возможности</h2>
+  <div class="feat-grid">
+    <div class="feat"><h3>Позиционирование в штреке</h3><p>Анкеры на расстоянии 20–25 м вдоль горизонтальной выработки. TWR: нет синхронизации часов. Развёртка — один анкер каждые 20 минут.</p></div>
+    <div class="feat"><h3>Mesh-сеть без кабелей WiFi</h3><p>Анкеры передают данные эстафетой по UWB-каналу до выхода на поверхность. Один анкер вышел из строя — трафик обходит через соседей.</p></div>
+    <div class="feat"><h3>Man-down алерт</h3><p>Акселерометр в метке на каске фиксирует паттерн падения или неподвижность. Алерт диспетчеру за 30 секунд с точными координатами.</p></div>
+    <div class="feat"><h3>SOS кнопка</h3><p>Ручная активация на метке → немедленный алерт с координатами. Спасатели входят с точными данными, не ищут человека.</p></div>
+    <div class="feat"><h3>Счётчик вошедших / вышедших</h3><p>Автоматический журнал: кто в шахте, с какого времени, в каком забое. Одна кнопка «тревога» — диспетчер знает, кого искать.</p></div>
+    <div class="feat"><h3>Пыле- и влагозащита</h3><p>IP67 анкеры и метки. Диапазон температур −20…+60°C. Взрывозащищённые исполнения Ex ia под заказ.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Нормативная база</h2>
+  <div class="regs">
+    <h3>Выполняемые требования</h3>
+    <div class="reg-list">
+      <span class="reg-tag">ФНП РД-15-08 (Горнодобыча)</span>
+      <span class="reg-tag">Приказ Ростехнадзора №599</span>
+      <span class="reg-tag">ГОСТ Р 54333</span>
+      <span class="reg-tag">МЧС — ГПСС</span>
+      <span class="reg-tag">ПБ 05-618 (Угольные шахты)</span>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Технические характеристики</h2>
+  <div class="specs-grid">
+    <div class="spec"><span class="v">30 см</span><span class="l">Точность позиции в штреке</span></div>
+    <div class="spec"><span class="v">20–25 м</span><span class="l">Шаг анкеров вдоль выработки</span></div>
+    <div class="spec"><span class="v">TWR</span><span class="l">Без синхронизации анкеров</span></div>
+    <div class="spec"><span class="v">IP67</span><span class="l">Защита анкеров и меток</span></div>
+    <div class="spec"><span class="v">3 года</span><span class="l">Батарея метки горняка</span></div>
+    <div class="spec"><span class="v">30 с</span><span class="l">Время Man-down до алерта</span></div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Проектируем под схему выработок</h2>
+  <p>Пришлите схему горизонтов — рассчитаем количество анкеров, кабельную схему Mesh и стоимость системы за один рабочий день.</p>
+  <a href="mailto:sayr@inbox.ru" class="btn">Написать нам</a>
+  <div><a href="../index.html" class="back-link">← Все решения DN·RTLS</a></div>
+</section>
+<footer>DN·RTLS · RTLS·Mine · sayr@inbox.ru</footer>
+</body>
+</html>

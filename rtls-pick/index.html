@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTLS·Pick — Точная комплектация на складе. UWB 20 см.</title>
+<meta name="description" content="UWB-система pick-by-location: точность 20 см без AoA-антенных решёток. DW3000, интеграция с WMS, ноль ошибок комплектования.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --acc: #0f766e; --dark: #0f172a; --slate: #1e293b; --muted: #64748b; --border: #e2e8f0; --bg: #f8fafc; --white: #fff; --radius: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--slate); background: var(--bg); line-height: 1.6; }
+  nav { background: var(--dark); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; }
+  .nav-logo span { color: #60a5fa; }
+  .nav-back { color: #94a3b8; font-size: .85rem; }
+  .hero { background: linear-gradient(135deg, #042f2e 0%, #011c1b 100%); color: #fff; padding: 72px 5% 88px; }
+  .hero-inner { max-width: 760px; }
+  .hero-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #5eead4; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.12; margin-bottom: 20px; }
+  .hero h1 span { color: #5eead4; }
+  .hero p { color: #99f6e4; font-size: 1rem; max-width: 560px; margin-bottom: 32px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat .val { font-size: 1.8rem; font-weight: 900; color: #5eead4; display: block; }
+  .stat .lbl { font-size: .78rem; color: #99f6e4; margin-top: 2px; }
+  .section { padding: 64px 5%; }
+  .section.alt { background: var(--white); }
+  .section h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; margin-bottom: 12px; }
+  .section .sub { color: var(--muted); margin-bottom: 40px; }
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .how-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .how-card .num { font-size: 2rem; font-weight: 900; color: var(--acc); margin-bottom: 10px; }
+  .how-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .how-card p { font-size: .87rem; color: var(--muted); }
+  .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .spec { background: var(--white); padding: 20px; text-align: center; }
+  .spec .v { font-size: 1.4rem; font-weight: 800; color: var(--acc); display: block; }
+  .spec .l { font-size: .75rem; color: var(--muted); margin-top: 4px; }
+  .vs-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+  .vs-table th, .vs-table td { padding: 12px 18px; font-size: .88rem; text-align: left; border-bottom: 1px solid var(--border); }
+  .vs-table th { background: var(--dark); color: #fff; font-weight: 700; }
+  .vs-table tr:last-child td { border: none; }
+  .win { color: #16a34a; font-weight: 700; }
+  .contact { padding: 64px 5%; background: linear-gradient(135deg, #042f2e 0%, #011c1b 100%); color: #fff; text-align: center; }
+  .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
+  .contact p { color: #99f6e4; max-width: 480px; margin: 0 auto 32px; }
+  .btn { display: inline-block; background: var(--acc); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 700; }
+  .back-link { display: inline-block; margin-top: 20px; color: #5eead4; font-size: .9rem; }
+  footer { background: var(--dark); color: #64748b; text-align: center; padding: 20px 5%; font-size: .8rem; }
+</style>
+</head>
+<body>
+<nav><div class="nav-logo">DN·<span>RTLS</span></div><a href="../index.html" class="nav-back">← Все решения</a></nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Складская логистика · Pick-by-Location · UWB DW3000</div>
+    <h1>Рука тянется<br>не в ту ячейку — система<br>знает это <span>до касания</span></h1>
+    <p>UWB-точность 20 см определяет, к какой ячейке тянется браслет сборщика. WMS получает подтверждение без сканирования. Ошибка комплектования → 0.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="val">20 см</span><span class="lbl">Точность определения ячейки</span></div>
+      <div class="stat"><span class="val">0</span><span class="lbl">Ошибок комплектования</span></div>
+      <div class="stat"><span class="val">без ШК</span><span class="lbl">Подтверждение без сканирования</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Принцип работы</h2>
+  <div class="how-grid">
+    <div class="how-card"><div class="num">01</div><h3>Браслет сборщика</h3><p>nRF52840 + DW3000 в браслете. Вес 60 г. Батарея 1 год. TWR с анкерами зоны — координата кисти обновляется 10 Гц.</p></div>
+    <div class="how-card"><div class="num">02</div><h3>Анкеры на стеллажах</h3><p>По 1 анкеру каждые 8 метров на высоте 2.5 м. Стандартные крепления на вертикальные стойки стеллажей без сверления.</p></div>
+    <div class="how-card"><div class="num">03</div><h3>WMS сопоставление</h3><p>Сервер позиционирования сравнивает координату кисти с картой ячеек. Ячейка совпадает — автоподтверждение в WMS. Не совпадает — вибросигнал на браслет.</p></div>
+    <div class="how-card"><div class="num">04</div><h3>Аналитика</h3><p>Время на задание по зонам, топ ошибочных ячеек, производительность сборщика по часам. CSV-экспорт или REST API для BI-систем.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>RTLS·Pick против BLE AoA</h2>
+  <table class="vs-table">
+    <thead><tr><th>Параметр</th><th>RTLS·Pick (UWB)</th><th>BLE AoA (DN·Pick)</th></tr></thead>
+    <tbody>
+      <tr><td>Точность</td><td class="win">20 см</td><td>10–30 см (при идеальном LOS)</td></tr>
+      <tr><td>Антенная решётка</td><td class="win">Не нужна — обычные анкеры</td><td>Нужна (8+ антенн на локатор)</td></tr>
+      <tr><td>Металлические стеллажи</td><td class="win">Работает</td><td>Деградация AoA при металле</td></tr>
+      <tr><td>Стоимость инфраструктуры</td><td>Выше (DW3000 дороже BLE)</td><td class="win">Ниже</td></tr>
+      <tr><td>Батарея метки</td><td>1 год</td><td class="win">до 3 лет</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="section alt">
+  <h2>Технические характеристики</h2>
+  <div class="specs-grid">
+    <div class="spec"><span class="v">20 см</span><span class="l">Точность TWR в зоне стеллажей</span></div>
+    <div class="spec"><span class="v">10 Гц</span><span class="l">Частота обновления позиции кисти</span></div>
+    <div class="spec"><span class="v">1 год</span><span class="l">Батарея браслета</span></div>
+    <div class="spec"><span class="v">8 м</span><span class="l">Шаг анкеров вдоль стеллажа</span></div>
+    <div class="spec"><span class="v">WMS API</span><span class="l">Автоподтверждение в WMS</span></div>
+    <div class="spec"><span class="v">60 г</span><span class="l">Вес браслета</span></div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Пилот на одной зоне комплектации</h2>
+  <p>2 стеллажных ряда, 4 анкера, 2 браслета — за две недели. Пришлите схему склада — рассчитаем покрытие.</p>
+  <a href="mailto:sayr@inbox.ru" class="btn">Написать нам</a>
+  <div><a href="../index.html" class="back-link">← Все решения DN·RTLS</a></div>
+</section>
+<footer>DN·RTLS · RTLS·Pick · sayr@inbox.ru</footer>
+</body>
+</html>

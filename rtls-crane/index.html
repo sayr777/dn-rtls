@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RTLS·Crane — Позиционирование крюка крана. UWB 20 см.</title>
+<meta name="description" content="UWB-позиционирование крюка крана с точностью 20 см в дыму и темноте. DW3000, 3D координаты, интеграция с ПЛК Siemens, Omron, Beckhoff.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --acc: #c2410c; --dark: #0f172a; --slate: #1e293b; --muted: #64748b; --border: #e2e8f0; --bg: #f8fafc; --white: #fff; --radius: 16px; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--slate); background: var(--bg); line-height: 1.6; }
+  nav { background: var(--dark); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-logo { color: #fff; font-weight: 800; font-size: 1rem; }
+  .nav-logo span { color: #60a5fa; }
+  .nav-back { color: #94a3b8; font-size: .85rem; transition: color .2s; }
+  .nav-back:hover { color: #fff; }
+
+  .hero { background: linear-gradient(135deg, #431407 0%, #1c0a00 100%); color: #fff; padding: 72px 5% 88px; }
+  .hero-inner { max-width: 760px; }
+  .hero-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #fdba74; margin-bottom: 16px; }
+  .hero h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 900; line-height: 1.12; margin-bottom: 20px; }
+  .hero h1 span { color: #fdba74; }
+  .hero p { color: #fed7aa; font-size: 1rem; max-width: 560px; margin-bottom: 32px; }
+  .hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .stat .val { font-size: 1.8rem; font-weight: 900; color: #fdba74; display: block; }
+  .stat .lbl { font-size: .78rem; color: #fed7aa; margin-top: 2px; }
+
+  .section { padding: 64px 5%; }
+  .section.alt { background: var(--white); }
+  .section h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 800; margin-bottom: 12px; }
+  .section .sub { color: var(--muted); margin-bottom: 40px; }
+
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+  .how-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+  .how-card .num { font-size: 2rem; font-weight: 900; color: var(--acc); margin-bottom: 10px; }
+  .how-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+  .how-card p { font-size: .87rem; color: var(--muted); }
+
+  .specs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .spec { background: var(--white); padding: 20px; text-align: center; }
+  .spec .v { font-size: 1.4rem; font-weight: 800; color: var(--acc); display: block; }
+  .spec .l { font-size: .75rem; color: var(--muted); margin-top: 4px; }
+
+  .use-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .use-item { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 20px; border-left: 4px solid var(--acc); }
+  .use-item h3 { font-size: .95rem; font-weight: 700; color: var(--acc); margin-bottom: 6px; }
+  .use-item p { font-size: .85rem; color: var(--muted); }
+
+  .contact { padding: 64px 5%; background: linear-gradient(135deg, #431407 0%, #1c0a00 100%); color: #fff; text-align: center; }
+  .contact h2 { font-size: 1.8rem; font-weight: 800; margin-bottom: 14px; }
+  .contact p { color: #fed7aa; max-width: 480px; margin: 0 auto 32px; }
+  .btn { display: inline-block; background: var(--acc); color: #fff; padding: 14px 36px; border-radius: 8px; font-weight: 700; }
+  .back-link { display: inline-block; margin-top: 20px; color: #fdba74; font-size: .9rem; }
+  footer { background: var(--dark); color: #64748b; text-align: center; padding: 20px 5%; font-size: .8rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">DN·<span>RTLS</span></div>
+  <a href="../index.html" class="nav-back">← Все решения</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Краны · Порты · Металлургия · UWB DW3000</div>
+    <h1>Крановщик видит крюк<br>с точностью <span>20 сантиметров</span> —<br>даже в дыму и темноте</h1>
+    <p>UWB-система позиционирования крюка мостового и козлового крана. Слепые зоны исключены. Координаты XYZ на экран оператора. Интеграция с ПЛК без остановки производства.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="val">15–25 см</span><span class="lbl">Точность 3D-позиционирования</span></div>
+      <div class="stat"><span class="val">20 Гц</span><span class="lbl">Достаточно для управления краном</span></div>
+      <div class="stat"><span class="val">60 м</span><span class="lbl">Дальность в пролёте</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Как устроена система</h2>
+  <p class="sub">4 анкера по углам пролёта, 1 тег на крюке — полная 3D картина.</p>
+  <div class="how-grid">
+    <div class="how-card">
+      <div class="num">01</div>
+      <h3>4 анкера по периметру</h3>
+      <p>Монтируются на колоннах или фермах кранового пролёта. Питание 220 В или PoE. Ethernet на центральный сервер. Треугольниковое / прямоугольное перекрытие зоны.</p>
+    </div>
+    <div class="how-card">
+      <div class="num">02</div>
+      <h3>UWB-тег на крюке</h3>
+      <p>Промышленный корпус IP65, вибростойкий. Питание от батареи 1 год (при 20 Гц) или кабель по подвесу. TWR с 4 анкерами → координаты X, Y, Z с точностью 20 см.</p>
+    </div>
+    <div class="how-card">
+      <div class="num">03</div>
+      <h3>Дисплей крановщика</h3>
+      <p>Планшет в кабине или встроенный монитор: план пролёта с живой позицией крюка, зоны запрета подъёма, предупреждения о столкновении с конструкциями.</p>
+    </div>
+    <div class="how-card">
+      <div class="num">04</div>
+      <h3>ПЛК интеграция</h3>
+      <p>REST API или Modbus TCP. ПЛК получает X, Y, Z в мм. Возможна автоматическая остановка тележки при входе в запретную зону без участия крановщика.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Применения</h2>
+  <p class="sub">Любое производство с мостовыми, козловыми или портальными кранами.</p>
+  <div class="use-list">
+    <div class="use-item"><h3>Металлургия</h3><p>Разливочные краны, пространство над ковшами. Дым и высокая температура не влияют на UWB-сигнал.</p></div>
+    <div class="use-item"><h3>Контейнерный порт</h3><p>RTG и RMG краны. Автоматическое позиционирование над ячейкой стека контейнеров ±20 см.</p></div>
+    <div class="use-item"><h3>Машиностроение</h3><p>Точная установка тяжёлых деталей в станки. Зоны запрета над открытыми зонами обработки.</p></div>
+    <div class="use-item"><h3>Строительство</h3><p>Башенный кран — отображение позиции крюка диспетчеру. Запись траектории подъёма для отчётности.</p></div>
+  </div>
+</section>
+
+<section class="section alt">
+  <h2>Технические характеристики</h2>
+  <div class="specs-grid">
+    <div class="spec"><span class="v">15–25 см</span><span class="l">Точность 3D (TWR, 4 анкера)</span></div>
+    <div class="spec"><span class="v">20 Гц</span><span class="l">Частота обновления позиции</span></div>
+    <div class="spec"><span class="v">60 м</span><span class="l">Макс. дальность в пролёте</span></div>
+    <div class="spec"><span class="v">IP65</span><span class="l">Защита тега на крюке</span></div>
+    <div class="spec"><span class="v">1 год</span><span class="l">Батарея тега при 20 Гц</span></div>
+    <div class="spec"><span class="v">Modbus TCP</span><span class="l">Интерфейс к ПЛК</span></div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2>Проектируем под ваш пролёт</h2>
+  <p>Пришлите чертёж кранового пролёта и тип крана — вернём схему расстановки анкеров и смету за один рабочий день.</p>
+  <a href="mailto:sayr@inbox.ru" class="btn">Написать нам</a>
+  <div><a href="../index.html" class="back-link">← Все решения DN·RTLS</a></div>
+</section>
+
+<footer>DN·RTLS · RTLS·Crane · sayr@inbox.ru</footer>
+</body>
+</html>
